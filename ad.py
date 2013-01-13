@@ -18,6 +18,7 @@ def post_ad(text):
 import os
 
 ad_path = "ads"
+ad_delay = 60 # minutes
 
 def minutes_to_seconds(m):
     return m * 60
