@@ -18,15 +18,11 @@
 			<comment>Advertisements for programs</comment>
 			<column name="ad_copy" type="TEXT" jt="-1" />
 			<column name="program_id" type="INT" jt="4" mandatory="y" />
-			<index name="Pk_ad" unique="PRIMARY_KEY" >
-				<column name="program_id" />
-			</index>
 			<fk name="Fk_ad" to_schema="Default" to_table="program" delete_action="CASCADE" update_action="CASCADE" >
 				<fk_column name="program_id" pk="id" />
 			</fk>
 		</table>
 	</schema>
-	<connector name="Sqlite" database="Sqlite" driver_class="org.sqlite.JDBC" driver_jar="sqlite-jdbc-3.7.6.3.jar" host="localhost" port="7210" instance="/Users/admin/prg/skype-ads/dbschema/data.db" schema_mapping="" />
 	<layout name="skype_ads" show_relation_columns="y" >
 		<entity schema="Default" name="program" x="42" y="42" />
 		<entity schema="Default" name="ad" x="364" y="70" />

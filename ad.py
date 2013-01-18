@@ -1,3 +1,6 @@
+#!/usr/bin/python
+
+import logging
 import os
 import time
 
@@ -12,6 +15,7 @@ skype.Attach()
 skypechat = '#debbiematics/$b3691abf8f26222'
 
 def post_ad(text):
+    logging.debug("Posting {0}".format(text))
     c = skype.Chat(skypechat)
     c.SendMessage(text)
 
