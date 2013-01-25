@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import Skype4Py
 
 # Create an instance of the Skype class.
@@ -10,11 +12,11 @@ skype.Attach()
 print 'Your full name:', skype.CurrentUser.FullName
 print 'Your contacts:'
 for user in skype.Friends:
-    print '...', user.FullName
+    print '...', user.FullName.encode('utf-8').strip()
 
 print 'Your groups:'
 for group in skype.Groups:
-    print ',,,', group.DisplayName
+    print ',,,', group.DisplayName.encode('utf-8').strip()
 
 print 'Your chats:'
 for chat in skype.Chats:

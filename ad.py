@@ -2,6 +2,7 @@
 
 import logging
 import os
+import random
 import time
 
 import Skype4Py
@@ -12,11 +13,14 @@ skype = Skype4Py.Skype()
 # Connect the Skype object to the Skype client.
 skype.Attach()
 
-skypechat = '#debbiematics/$b3691abf8f26222'
+rooms = dict(
+    unlimited_ad = '#debbiematics/$b3691abf8f26222',
+    letsjoin =  '#lkcglobal/$2d2b21b71349065e'
+)
 
 def post_ad(text):
     logging.debug("Posting {0}".format(text))
-    c = skype.Chat(skypechat)
+    c = skype.Chat(rooms['unlimited_ad'])
     c.SendMessage(text)
 
 import os
@@ -27,13 +31,22 @@ ad_delay = 60 # minutes
 def minutes_to_seconds(m):
     return m * 60
 
+def wanted_ad(filename):
+    desired = 'uinvest potis elias general silver-saver ipdn'.split()
+    return any (
+        filename.startswith(s) and not filename.endswith('~')
+        for s in desired
+    )
+
 def post_ads():
     for (path, dirs, files) in os.walk(ad_path):
-        print path
-        print dirs
-        print files
-        print "----"
         for file in files:
+            print file
+            if not wanted_ad(file):
+                print "\tskipping"
+                continue
+            else:
+                print "\tposting"
             fullpath = os.path.join(path, file)
             with open(fullpath, 'r') as f:
                 ad_copy = f.read()
