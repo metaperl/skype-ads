@@ -32,7 +32,7 @@ def minutes_to_seconds(m):
     return m * 60
 
 def wanted_ad(filename):
-    desired = 'traffic uinvest potis elias general silver-saver ipdn'.split()
+    desired = 'xchanger jubi traffic uinvest potis elias silver-saver solavei eurex ipdn'.split()
     return any (
         filename.startswith(s) and not filename.endswith('~')
         for s in desired

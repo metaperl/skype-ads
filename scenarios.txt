@@ -1,0 +1,2 @@
+- Run this ad in every room now
+- This ad is higher priority
