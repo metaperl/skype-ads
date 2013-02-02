@@ -19,26 +19,37 @@ skype.Attach()
 rooms = dict(
     unlimited_ad = '#debbiematics/$b3691abf8f26222',
     perfect_trade = '#lordking989/$ac4d25d36c595eea',
-    new_programs = '#jimfurr/$2863804c49a01247'
+    new_programs = '#jimfurr/$2863804c49a01247',
+    best_of_best = '#carol.shannon5/$7c08cb513334cc60'
 )
 
 room_cycle = itertools.cycle(sorted(rooms.keys()))
 
 ad_path = "ads"
-ad_delay = 45 # minutes
+ad_delay = 15 # minutes
 
+random.seed()
+def select_room_random():
+    return random.choice(rooms.keys())
+
+def select_room_cyclic():
+    return room_cycle.next()
+
+room_selector = select_room_random
 
 def post_ad(file):
     with open(file, 'r') as f:
         ad_copy = f.read()
-        c = skype.Chat(rooms[ random.choice(rooms.keys()) ])
+        room = room_selector()
+        print room
+        c = skype.Chat(room)
         c.SendMessage(ad_copy)
 
 def minutes_to_seconds(m):
     return m * 60
 
 def wanted_ad(filename):
-    desired = 'asn:tax elias eurex gold ipdn jubi potis silver-saver solavei traffic uinvest xchanger'.split()
+    desired = 'asn:tax elias eternal eurex gold ipdn jubi potis silver-saver solavei traffic uinvest xchanger'.split()
     return any (s in filename for s in desired)
 
 def random_file():
