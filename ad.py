@@ -20,13 +20,15 @@ rooms = dict(
     unlimited_ad = '#debbiematics/$b3691abf8f26222',
     perfect_trade = '#lordking989/$ac4d25d36c595eea',
     new_programs = '#jimfurr/$2863804c49a01247',
-    best_of_best = '#carol.shannon5/$7c08cb513334cc60'
+    best_of_best = '#carol.shannon5/$7c08cb513334cc60',
+    dollar_monster = '#toptenearner/$4b519b42a7091315',
+    hy_22 = '#lorrie.trotter/$bbb7d486ea6b8d69',
 )
 
-room_cycle = itertools.cycle(sorted(rooms.keys()))
+room_cycle = itertools.cycle(rooms.keys())
 
 ad_path = "ads"
-ad_delay = 15 # minutes
+ad_delay = 10 # minutes
 
 random.seed()
 def select_room_random():
@@ -35,22 +37,31 @@ def select_room_random():
 def select_room_cyclic():
     return room_cycle.next()
 
-room_selector = select_room_random
+room_selector = select_room_cyclic
 
 def post_ad(file):
     with open(file, 'r') as f:
         ad_copy = f.read()
         room = room_selector()
-        print room
-        c = skype.Chat(room)
+        print "\t{0}".format(room)
+        c = skype.Chat(rooms[room])
         c.SendMessage(ad_copy)
 
 def minutes_to_seconds(m):
     return m * 60
 
-def wanted_ad(filename):
-    desired = 'asn:tax elias eternal eurex gold ipdn jubi potis silver-saver solavei traffic uinvest xchanger'.split()
+def general_advertising(filename):
+    desired = 'asn:tax eternal eurex gold ipdn jubi like potis silver-saver solavei traderush traffic uinvest xchanger'.split()
     return any (s in filename for s in desired)
+
+def hot_programs(filename):
+    desired = 'goldindex jubi like traderush'.split()
+    return any (s in filename for s in desired)
+
+current_campaign = hot_programs
+
+def wanted_ad(filename):
+    return current_campaign(filename)
 
 def random_file():
     files = [os.path.join(path, filename)
@@ -65,7 +76,7 @@ def get_wanted_file():
         print "\tskipping {0}".format(file)
         return get_wanted_file()
     else:
-        print "\tposting {0}".format(file)
+        print "posting {0}".format(file)
         return file
 
 
@@ -73,8 +84,8 @@ def get_wanted_file():
 def post_ads():
     while True:
         file = get_wanted_file()
-        post_ad(file)
-        time.sleep( minutes_to_seconds(ad_delay) )
+        #post_ad(file)
+        #time.sleep( minutes_to_seconds(ad_delay) )
 
 def main():
     while True:
