@@ -1,10 +1,15 @@
 #!/usr/bin/python
 
+from __future__ import print_function
+
+import datetime
 import itertools
 import logging
 import os
 import random
 import time
+
+
 
 import Skype4Py
 
@@ -39,11 +44,15 @@ def select_room_cyclic():
 
 room_selector = select_room_cyclic
 
+def current_time():
+    now = datetime.datetime.now()
+    return now.strftime("%I:%M%p")
+
 def post_ad(file):
     with open(file, 'r') as f:
         ad_copy = f.read()
         room = room_selector()
-        print "\t{0}".format(room)
+        print(" to {0}".format(room))
         c = skype.Chat(rooms[room])
         c.SendMessage(ad_copy)
 
@@ -58,7 +67,8 @@ def hot_programs(filename):
     desired = 'goldindex jubi like traderush'.split()
     return any (s in filename for s in desired)
 
-current_campaign = hot_programs
+#current_campaign = hot_programs
+current_campaign = general_advertising
 
 def wanted_ad(filename):
     return current_campaign(filename)
@@ -73,10 +83,10 @@ def random_file():
 def get_wanted_file():
     file = random_file()
     if not wanted_ad(file):
-        print "\tskipping {0}".format(file)
+        print("\t\tskipping {0}".format(file))
         return get_wanted_file()
     else:
-        print "posting {0}".format(file)
+        print("[ {0} ] posting {1}".format(current_time(), file), end="")
         return file
 
 
@@ -84,8 +94,8 @@ def get_wanted_file():
 def post_ads():
     while True:
         file = get_wanted_file()
-        #post_ad(file)
-        #time.sleep( minutes_to_seconds(ad_delay) )
+        post_ad(file)
+        time.sleep( minutes_to_seconds(ad_delay) )
 
 def main():
     while True:
