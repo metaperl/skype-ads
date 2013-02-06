@@ -61,7 +61,7 @@ def minutes_to_seconds(m):
     return m * 60
 
 def general_advertising(filename):
-    desired = 'asn:tax eternal eurex gold ipdn jubi potis silver-saver solavei traderush traffic uinvest xchanger'.split()
+    desired = 'asn:tax eternal eurex gold ipdn jubi potis rays silver-saver solavei traderush traffic uinvest xchanger'.split()
     return any (s in filename for s in desired)
 
 def hot_programs(filename):
