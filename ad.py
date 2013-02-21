@@ -13,6 +13,10 @@ import time
 
 import Skype4Py
 
+ad_path = "ads"
+ad_delay = 30 # minutes
+
+
 # Create an instance of the Skype class.
 skype = Skype4Py.Skype()
 
@@ -23,18 +27,17 @@ skype.Attach()
 
 rooms = dict(
     unlimited_ad = '#debbiematics/$b3691abf8f26222',
+    hy_22 = '#lorrie.trotter/$bbb7d486ea6b8d69',
     perfect_trade = '#lordking989/$ac4d25d36c595eea',
     new_programs = '#jimfurr/$2863804c49a01247',
     best_of_best = '#carol.shannon5/$7c08cb513334cc60',
     dollar_monster = '#toptenearner/$4b519b42a7091315',
-    hy_22 = '#lorrie.trotter/$bbb7d486ea6b8d69',
     networking_in_motion = '#ezyebiz/$d6e8a7a402943eff',
+    business_experts = '#kingmakerganesh/$554d6f21e608af70'
 )
 
 room_cycle = itertools.cycle(rooms.keys())
 
-ad_path = "ads"
-ad_delay = 10 # minutes
 
 random.seed()
 def select_room_random():
@@ -54,14 +57,26 @@ def post_ad(file):
         ad_copy = f.read()
         room = room_selector()
         print(" to {0}".format(room))
-        c = skype.Chat(rooms[room])
-        c.SendMessage(ad_copy)
+        try:
+            c = skype.Chat(rooms[room])
+        except:
+            logging.warn("ERROR in c.Chat({0})".format(room))
+            return
+        try:
+            c.SendMessage(ad_copy)
+        except:
+            logging.warn("ERROR in c.SendMessage(ad_copy)")
+            pass
 
 def minutes_to_seconds(m):
     return m * 60
 
 def general_advertising(filename):
-    desired = 'asn:tax eternal eurex gold ipdn jubi potis rays silver-saver solavei traderush traffic uinvest xchanger'.split()
+    desired = 'asn:tax eternal ipdn london potis rays silver-saver solavei traderush traffic uinvest'.split()
+    return any (s in filename for s in desired)
+
+def karatbars_advertising(filename):
+    desired = 'rays karatbars'.split()
     return any (s in filename for s in desired)
 
 def hot_programs(filename):
@@ -69,7 +84,8 @@ def hot_programs(filename):
     return any (s in filename for s in desired)
 
 #current_campaign = hot_programs
-current_campaign = general_advertising
+#current_campaign = general_advertising
+current_campaign = karatbars_advertising
 
 def wanted_ad(filename):
     return current_campaign(filename)
