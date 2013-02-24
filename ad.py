@@ -75,6 +75,10 @@ def general_advertising(filename):
     desired = 'asn:tax eternal ipdn london potis rays silver-saver solavei traderush traffic uinvest'.split()
     return any (s in filename for s in desired)
 
+def general_advertising2(filename):
+    desired = 'asn:tax eternal ipdn karatbars potis rays silver-saver solavei traffic uinvest'.split()
+    return any (s in filename for s in desired)
+
 def karatbars_advertising(filename):
     desired = 'rays karatbars'.split()
     return any (s in filename for s in desired)
@@ -85,7 +89,8 @@ def hot_programs(filename):
 
 #current_campaign = hot_programs
 #current_campaign = general_advertising
-current_campaign = karatbars_advertising
+#current_campaign = karatbars_advertising
+current_campaign = general_advertising2
 
 def wanted_ad(filename):
     return current_campaign(filename)
