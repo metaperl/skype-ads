@@ -14,7 +14,7 @@ import time
 import Skype4Py
 
 ad_path = "ads"
-ad_delay = 30 # minutes
+ad_delay = 20 # minutes
 
 
 # Create an instance of the Skype class.
@@ -72,19 +72,15 @@ def minutes_to_seconds(m):
     return m * 60
 
 def general_advertising(filename):
-    desired = 'asn:tax eternal ipdn london potis rays silver-saver solavei traderush traffic uinvest'.split()
+    desired = 'asn:tax eternal hrs ipdn london potis rays silver-saver solavei traderush traffic uinvest'.split()
     return any (s in filename for s in desired)
 
 def general_advertising2(filename):
-    desired = 'asn:tax eternal ipdn karatbars potis rays silver-saver solavei traffic uinvest'.split()
-    return any (s in filename for s in desired)
-
-def karatbars_advertising(filename):
-    desired = 'rays karatbars'.split()
+    desired = 'asn:tax eternal ipdn karatbars mega-money potis rays silver-saver solavei traffic uinvest'.split()
     return any (s in filename for s in desired)
 
 def hot_programs(filename):
-    desired = 'goldindex jubi like traderush'.split()
+    desired = 'mega-money karatbars'.split()
     return any (s in filename for s in desired)
 
 #current_campaign = hot_programs
@@ -110,7 +106,6 @@ def get_wanted_file():
     else:
         print("[ {0} ] posting {1}".format(current_time(), file), end="")
         return file
-
 
 
 def post_ads():
