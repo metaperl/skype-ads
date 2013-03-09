@@ -1,5 +1,8 @@
 #!/usr/bin/python
 
+import codecs
+import sys
+
 import Skype4Py
 
 # Create an instance of the Skype class.
@@ -20,5 +23,9 @@ skype.Attach()
 
 print 'Your chats:'
 for chat in skype.Chats:
-    (n, fn) = chat.Name.encode('utf-8'), chat.FriendlyName.encode('utf-8')
-    print 'skypename: {0} topic: {1} friendly name: {2}'.format(n, chat.Topic, fn)
+    m = len(chat.Members)
+    (n, fn) = [
+        s.encode('ascii', 'ignore')
+        for s in (chat.Name, chat.FriendlyName)
+    ]
+    print '{0}\t{1}\t{2}'.format(m, n, fn)

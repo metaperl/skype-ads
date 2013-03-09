@@ -15,6 +15,7 @@ import Skype4Py
 
 ad_path = "ads"
 ad_delay = 20 # minutes
+current_campaign=None
 
 
 # Create an instance of the Skype class.
@@ -33,13 +34,34 @@ rooms = dict(
     best_of_best = '#carol.shannon5/$7c08cb513334cc60',
     dollar_monster = '#toptenearner/$4b519b42a7091315',
     networking_in_motion = '#ezyebiz/$d6e8a7a402943eff',
-    business_experts = '#kingmakerganesh/$554d6f21e608af70'
+    business_experts = '#kingmakerganesh/$554d6f21e608af70',
+    carols_room = '#carol.shannon5/$cj.nulifetime;c3a063745b4f9a0f'
 )
 
 room_cycle = itertools.cycle(rooms.keys())
 
 
 random.seed()
+
+
+def programs(filename):
+    desired = 'potis rays karatbars cushion uinvest'.split()
+    return any (s in filename for s in desired)
+
+def general2(filename):
+    desired = 'all-solutions-network cushion eternal ipdn karatbars potis rays silver-saver solavei traffic uinvest2'.split()
+    return any (s in filename for s in desired)
+
+def focused(filename):
+    desired = 'cushion karatbars'.split()
+    return any (s in filename for s in desired)
+
+def hot(filename):
+    desired = 'cushion xtreme'.split()
+    return any (s in filename for s in desired)
+
+
+
 def select_room_random():
     return random.choice(rooms.keys())
 
@@ -71,22 +93,6 @@ def post_ad(file):
 def minutes_to_seconds(m):
     return m * 60
 
-def general_advertising(filename):
-    desired = 'asn:tax eternal hrs ipdn london potis rays silver-saver solavei traderush traffic uinvest'.split()
-    return any (s in filename for s in desired)
-
-def general_advertising2(filename):
-    desired = 'asn:tax eternal ipdn karatbars mega-money potis rays silver-saver solavei traffic uinvest'.split()
-    return any (s in filename for s in desired)
-
-def hot_programs(filename):
-    desired = 'mega-money karatbars'.split()
-    return any (s in filename for s in desired)
-
-#current_campaign = hot_programs
-#current_campaign = general_advertising
-#current_campaign = karatbars_advertising
-current_campaign = general_advertising2
 
 def wanted_ad(filename):
     return current_campaign(filename)
@@ -114,7 +120,9 @@ def post_ads():
         post_ad(file)
         time.sleep( minutes_to_seconds(ad_delay) )
 
-def main():
+def main(campaign='general'):
+    global current_campaign
+    current_campaign = globals()[campaign]
     while True:
         post_ads()
 
