@@ -14,7 +14,7 @@ import time
 import Skype4Py
 
 ad_path = "ads"
-ad_delay = 20 # minutes
+ad_delay = 60 # minutes
 current_campaign=None
 
 
@@ -27,6 +27,7 @@ skype.Attach()
 #     letsjoin =  '#lkcglobal/$2d2b21b71349065e',
 
 rooms = dict(
+    gfp_with_updates = '#lynette.artin/$1a07187ff6215046',
     unlimited_ad = '#debbiematics/$b3691abf8f26222',
     hy_22 = '#lorrie.trotter/$bbb7d486ea6b8d69',
     perfect_trade = '#lordking989/$ac4d25d36c595eea',
@@ -45,7 +46,7 @@ random.seed()
 
 
 def programs(filename):
-    desired = 'potis rays karatbars cushion uinvest'.split()
+    desired = 'cbk karatbars potis rays ron-mueller solavei uinvest'.split()
     return any (s in filename for s in desired)
 
 def general2(filename):
