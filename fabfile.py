@@ -26,9 +26,9 @@ skype.Attach()
 
 #     letsjoin =  '#lkcglobal/$2d2b21b71349065e',
 
+
 rooms = dict(
-    gfp_with_updates = '#lynette.artin/$1a07187ff6215046',
-    unlimited_ad = '#debbiematics/$b3691abf8f26222',
+    work_smarter = '#dotone4/$3ae54c7bded9b832',
     hy_22 = '#lorrie.trotter/$bbb7d486ea6b8d69',
     perfect_trade = '#lordking989/$ac4d25d36c595eea',
     new_programs = '#jimfurr/$2863804c49a01247',
@@ -36,7 +36,10 @@ rooms = dict(
     dollar_monster = '#toptenearner/$4b519b42a7091315',
     networking_in_motion = '#ezyebiz/$d6e8a7a402943eff',
     business_experts = '#kingmakerganesh/$554d6f21e608af70',
-    carols_room = '#carol.shannon5/$cj.nulifetime;c3a063745b4f9a0f'
+    carols_room = '#carol.shannon5/$cj.nulifetime;c3a063745b4f9a0f',
+    positive_thinking = '#carol.shannon4/$94cefc7f09c4c446',
+    gfp_with_updates = '#lynette.artin/$1a07187ff6215046',
+    unlimited_ad = '#debbiematics/$b3691abf8f26222'
 )
 
 room_cycle = itertools.cycle(rooms.keys())
@@ -46,15 +49,15 @@ random.seed()
 
 
 def programs(filename):
-    desired = 'cbk karatbars potis rays ron-mueller solavei uinvest'.split()
+    desired = 'rays cbk karatbars'.split()
     return any (s in filename for s in desired)
 
-def general2(filename):
-    desired = 'all-solutions-network cushion eternal ipdn karatbars potis rays silver-saver solavei traffic uinvest2'.split()
+def general(filename):
+    desired = 'all-solutions-network cbk cushion eternal healthy ipdn karatbars potis rays silver-saver solavei traffic uinvest'.split()
     return any (s in filename for s in desired)
 
 def focused(filename):
-    desired = 'cushion karatbars'.split()
+    desired = 'cbk uinvest rays karatbars'.split()
     return any (s in filename for s in desired)
 
 def hot(filename):
