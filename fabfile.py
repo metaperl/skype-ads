@@ -14,7 +14,7 @@ import time
 import Skype4Py
 
 ad_path = "ads"
-ad_delay = 60 # minutes
+ad_delay = 60 # middle of the day when no one is working
 current_campaign=None
 
 
@@ -28,6 +28,7 @@ skype.Attach()
 
 
 rooms = dict(
+    ad_with_gigi = '#gina.dujardin/$38e60fce428eadd1',
     work_smarter = '#dotone4/$3ae54c7bded9b832',
     hy_22 = '#lorrie.trotter/$bbb7d486ea6b8d69',
     perfect_trade = '#lordking989/$ac4d25d36c595eea',
@@ -42,28 +43,43 @@ rooms = dict(
     unlimited_ad = '#debbiematics/$b3691abf8f26222'
 )
 
-room_cycle = itertools.cycle(rooms.keys())
+room_cycle = itertools.cycle(reversed(rooms.keys()))
 
 
 random.seed()
 
+# -----------------------------------------------------------------------
 
 def programs(filename):
-    desired = 'rays cbk karatbars'.split()
+    desired = 'cbk karatbars ayush rays uinvest'.split()
     return any (s in filename for s in desired)
 
 def general(filename):
-    desired = 'all-solutions-network cbk cushion eternal healthy ipdn karatbars potis rays silver-saver solavei traffic uinvest'.split()
+    desired = 'cbk healthy ipdn karatbars nacv potis rays silver-saver solavei uinvest'.split()
     return any (s in filename for s in desired)
 
-def focused(filename):
-    desired = 'cbk uinvest rays karatbars'.split()
+def mlm_and_invest(filename):
+    desired = 'ayush cbk karatbars potis rays uinvest'.split()
+    return any (s in filename for s in desired)
+
+
+def mlm(filename):
+    desired = 'cbk karatbars rays'.split()
+    return any (s in filename for s in desired)
+
+def invest(filename):
+    desired = 'ayush karatbars'.split()
+    return any (s in filename for s in desired)
+
+def warm(filename):
+    desired = 'addwallet cbk ray '.split()
     return any (s in filename for s in desired)
 
 def hot(filename):
-    desired = 'cushion xtreme'.split()
+    desired = 'addwallet'.split()
     return any (s in filename for s in desired)
 
+# -----------------------------------------------------------------------
 
 
 def select_room_random():
