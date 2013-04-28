@@ -62,9 +62,13 @@ def mlm_and_invest(filename):
     desired = 'ayush cbk karatbars potis rays uinvest'.split()
     return any (s in filename for s in desired)
 
+def mlm_plus(filename):
+    desired = 'uinvest karatbars cbk'.split()
+    return any (s in filename for s in desired)
+
 
 def mlm(filename):
-    desired = 'cbk karatbars rays'.split()
+    desired = 'cbk karatbars addwallet'.split()
     return any (s in filename for s in desired)
 
 def invest(filename):
