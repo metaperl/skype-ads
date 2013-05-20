@@ -76,11 +76,11 @@ def invest(filename):
     return any (s in filename for s in desired)
 
 def warm(filename):
-    desired = 'belizer cbk karatbars'.split()
+    desired = 'cbk'.split()
     return any (s in filename for s in desired)
 
 def hot(filename):
-    desired = 'belizer'.split()
+    desired = 'karatbars'.split()
     return any (s in filename for s in desired)
 
 # -----------------------------------------------------------------------
