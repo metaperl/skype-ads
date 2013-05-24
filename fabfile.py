@@ -51,15 +51,15 @@ random.seed()
 # -----------------------------------------------------------------------
 
 def programs(filename):
-    desired = 'cbk karatbars ayush rays uinvest'.split()
+    desired = 'cbk karatbars potis uinvest'.split()
     return any (s in filename for s in desired)
 
 def general(filename):
     desired = 'cbk healthy ipdn karatbars nacv potis rays silver-saver solavei uinvest'.split()
     return any (s in filename for s in desired)
 
-def mlm_and_invest(filename):
-    desired = 'ayush cbk karatbars potis rays uinvest'.split()
+def invest2(filename):
+    desired = 'potis uinvest'.split()
     return any (s in filename for s in desired)
 
 def mlm_plus(filename):
@@ -68,7 +68,7 @@ def mlm_plus(filename):
 
 
 def mlm(filename):
-    desired = 'cbk karatbars addwallet'.split()
+    desired = 'cbk karatbars'.split()
     return any (s in filename for s in desired)
 
 def invest(filename):
