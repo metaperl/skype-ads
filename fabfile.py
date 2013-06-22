@@ -28,6 +28,9 @@ skype.Attach()
 
 
 rooms = dict(
+    barbs = '#barbarella623/$e1c4d8a66a9d8209',
+    feel_free = '#andrek333/$e38c0fe714eefd4e',
+    anything_goes = '#lyndabourgeois/$e7391b9ffa653fe6',
     ad_with_gigi = '#gina.dujardin/$38e60fce428eadd1',
     work_smarter = '#dotone4/$3ae54c7bded9b832',
     hy_22 = '#lorrie.trotter/$bbb7d486ea6b8d69',
@@ -43,7 +46,8 @@ rooms = dict(
     unlimited_ad = '#debbiematics/$b3691abf8f26222'
 )
 
-room_cycle = itertools.cycle(reversed(rooms.keys()))
+#room_cycle = itertools.cycle(reversed(rooms.keys()))
+room_cycle = itertools.cycle(rooms.keys())
 
 
 random.seed()
@@ -62,25 +66,27 @@ def invest2(filename):
     desired = 'potis uinvest'.split()
     return any (s in filename for s in desired)
 
-def mlm_plus(filename):
-    desired = 'uinvest karatbars cbk'.split()
+# 'belizers cbk karatbars matchrateplus solavei ufund uinvest wealthbuilders'.split()
+
+def mlmi(filename):
+    desired = 'belizers cbk karatbars matchrateplus solavei ufund'.split()
     return any (s in filename for s in desired)
 
 
 def mlm(filename):
-    desired = 'cbk karatbars'.split()
+    desired = 'cbk flipping karatbars ufund'.split()
     return any (s in filename for s in desired)
 
 def invest(filename):
-    desired = 'ayush karatbars'.split()
+    desired = 'uinvest'.split()
     return any (s in filename for s in desired)
 
 def warm(filename):
-    desired = 'cbk'.split()
+    desired = '300-dollar-loan'.split()
     return any (s in filename for s in desired)
 
 def hot(filename):
-    desired = 'karatbars'.split()
+    desired = 'flipping'.split()
     return any (s in filename for s in desired)
 
 # -----------------------------------------------------------------------
@@ -131,7 +137,7 @@ def random_file():
 def get_wanted_file():
     file = random_file()
     if not wanted_ad(file):
-        print("\t\tskipping {0}".format(file))
+        #print("\t\tskipping {0}".format(file))
         return get_wanted_file()
     else:
         print("[ {0} ] posting {1}".format(current_time(), file), end="")
