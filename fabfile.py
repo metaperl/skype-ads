@@ -14,7 +14,7 @@ import time
 import Skype4Py
 
 ad_path = "ads"
-ad_delay = 60 # middle of the day when no one is working
+ad_delay = 120 # middle of the day when no one is working
 current_campaign=None
 
 
@@ -46,8 +46,12 @@ rooms = dict(
     unlimited_ad = '#debbiematics/$b3691abf8f26222'
 )
 
-#room_cycle = itertools.cycle(reversed(rooms.keys()))
-room_cycle = itertools.cycle(rooms.keys())
+#room_cycle = itertools.cycle(
+
+rk = reversed(rooms.keys())
+#rk = rooms.keys()
+print(rk)
+room_cycle = itertools.cycle(rk)
 
 
 random.seed()
@@ -63,7 +67,7 @@ def general(filename):
     return any (s in filename for s in desired)
 
 def invest2(filename):
-    desired = 'potis uinvest'.split()
+    desired = 'pure-income potis uinvest'.split()
     return any (s in filename for s in desired)
 
 # 'belizers cbk karatbars matchrateplus solavei ufund uinvest wealthbuilders'.split()
@@ -77,16 +81,21 @@ def mlm(filename):
     desired = 'cbk flipping karatbars ufund'.split()
     return any (s in filename for s in desired)
 
-def invest(filename):
-    desired = 'uinvest'.split()
+def kb(filename):
+    desired = 'karatbars'.split()
     return any (s in filename for s in desired)
 
+def lukewarm(filename):
+    desired = 'cbk coingeneration flipping karatbars uinvest pure-income ufund'.split()
+    return any (s in filename for s in desired)
+
+
 def warm(filename):
-    desired = '300-dollar-loan'.split()
+    desired = 'karatbars'.split()
     return any (s in filename for s in desired)
 
 def hot(filename):
-    desired = 'flipping'.split()
+    desired = 'sheerpower'.split()
     return any (s in filename for s in desired)
 
 # -----------------------------------------------------------------------
@@ -135,13 +144,14 @@ def random_file():
     return random.choice(files)
 
 def get_wanted_file():
-    file = random_file()
-    if not wanted_ad(file):
-        #print("\t\tskipping {0}".format(file))
-        return get_wanted_file()
-    else:
-        print("[ {0} ] posting {1}".format(current_time(), file), end="")
-        return file
+    while True:
+        file = random_file()
+        if not wanted_ad(file):
+            #print("\t\tskipping {0}".format(file))
+            pass
+        else:
+            print("[ {0} ] posting {1}".format(current_time(), file), end="")
+            return file
 
 
 def post_ads():
