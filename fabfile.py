@@ -86,16 +86,24 @@ def kb(filename):
     return any (s in filename for s in desired)
 
 def lukewarm(filename):
-    desired = 'cbk coingeneration flipping karatbars uinvest pure-income ufund'.split()
+    desired = ''.split()
+    return any (s in filename for s in desired)
+
+def golden(filename):
+    desired = 'golden-ark'.split()
+    return any (s in filename for s in desired)
+
+def normal(filename):
+    desired = 'lttw selina'.split()
     return any (s in filename for s in desired)
 
 
 def warm(filename):
-    desired = 'karatbars'.split()
+    desired = ''.split()
     return any (s in filename for s in desired)
 
 def hot(filename):
-    desired = 'sheerpower'.split()
+    desired = 'karatbars/uk'.split()
     return any (s in filename for s in desired)
 
 # -----------------------------------------------------------------------
