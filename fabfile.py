@@ -1,7 +1,7 @@
-#!/usr/bin/python
 
 from __future__ import print_function
 
+# core
 import datetime
 import itertools
 import logging
@@ -9,8 +9,7 @@ import os
 import random
 import time
 
-
-
+# 3rd party
 import Skype4Py
 
 ad_path = "ads"
@@ -21,6 +20,8 @@ current_campaign=None
 # Create an instance of the Skype class.
 skype = Skype4Py.Skype()
 
+skype.Timeout = 900000
+
 # Connect the Skype object to the Skype client.
 skype.Attach()
 
@@ -28,6 +29,7 @@ skype.Attach()
 
 
 rooms = dict(
+    bills = '#bill.8bucks/$a707d292b44d57a5',
     barbs = '#barbarella623/$e1c4d8a66a9d8209',
     feel_free = '#andrek333/$e38c0fe714eefd4e',
     anything_goes = '#lyndabourgeois/$e7391b9ffa653fe6',
@@ -48,9 +50,13 @@ rooms = dict(
 
 #room_cycle = itertools.cycle(
 
-rk = reversed(rooms.keys())
-#rk = rooms.keys()
+#rk = reversed(rooms.keys())
+
+rk = rooms.keys()
+random.shuffle(rk)
+rk = [ 'bills' ] + rk
 print(rk)
+
 room_cycle = itertools.cycle(rk)
 
 
@@ -85,8 +91,8 @@ def kb(filename):
     desired = 'karatbars'.split()
     return any (s in filename for s in desired)
 
-def lukewarm(filename):
-    desired = ''.split()
+def urgent(filename):
+    desired = 'karatbars/urgent'.split()
     return any (s in filename for s in desired)
 
 def golden(filename):
