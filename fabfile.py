@@ -13,7 +13,7 @@ import time
 import Skype4Py
 
 ad_path = "ads"
-ad_delay = 120 # middle of the day when no one is working
+ad_delay = 90 # middle of the day when no one is working
 current_campaign=None
 
 
@@ -53,14 +53,14 @@ rooms = dict(
 #rk = reversed(rooms.keys())
 
 rk = rooms.keys()
+random.seed()
 random.shuffle(rk)
-rk = [ 'bills' ] + rk
 print(rk)
 
 room_cycle = itertools.cycle(rk)
 
 
-random.seed()
+
 
 # -----------------------------------------------------------------------
 
@@ -105,11 +105,11 @@ def normal(filename):
 
 
 def warm(filename):
-    desired = ''.split()
+    desired = 'research'.split()
     return any (s in filename for s in desired)
 
 def hot(filename):
-    desired = 'karatbars/uk'.split()
+    desired = 'karatbars/zim'.split()
     return any (s in filename for s in desired)
 
 # -----------------------------------------------------------------------
